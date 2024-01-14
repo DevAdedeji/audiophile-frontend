@@ -8,6 +8,19 @@
     letter-spacing: 1px;
 }
 
+body{
+    overflow-x: hidden;
+}
+
 a{
     text-decoration: none;
+}
+
+.input-border{
+    border: 1px solid;
+}
+
+.max-wid{
+    max-width: 1500px;
+    margin: 0 auto;
 }
