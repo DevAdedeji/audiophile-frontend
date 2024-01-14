@@ -3,8 +3,11 @@
     class="fixed top-0 right-0 left-0 h-10vh flex items-center justify-between w-90% mx-auto max-wid"
   >
     <div class="flex items-center">
-      <img src="../assets/icons/hamburger.svg" class="block mr-10 lg:hidden" />
-      <img src="../assets/images/logo.png" />
+      <NuxtImg
+        src="../assets/icons/hamburger.svg"
+        class="block mr-10 lg:hidden"
+      />
+      <NuxtImg src="../assets/images/logo.png" />
     </div>
     <ul class="hidden items-center gap-6 list-none lg:flex">
       <li v-for="link in links" :key="link.title">
@@ -16,7 +19,7 @@
       </li>
     </ul>
     <NuxtLink to="/" class="pr-4">
-      <img src="../assets/icons/cart.svg" />
+      <NuxtImg src="../assets/icons/cart.svg" />
     </NuxtLink>
   </nav>
 </template>

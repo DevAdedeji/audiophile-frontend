@@ -10,7 +10,7 @@
             NEW PRODUCT
           </h1>
           <h2
-            class="text-white text-14 font-700 uppercase tracking-0.5 text-center lg:text-start"
+            class="text-white text-8.5 md:text-14 font-700 uppercase tracking-0.5 text-center lg:text-start"
           >
             XX99 Mark II Headphones
           </h2>
@@ -25,7 +25,7 @@
         <div
           class="!hidden lg:w-1/2 h-full bg-black flex items-center justify-center object-contain lg:!flex"
         >
-          <img src="../assets/images/hero-image.png" />
+          <NuxtImg src="../assets/images/hero-image.png" />
         </div>
       </div>
     </header>
