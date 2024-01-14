@@ -12,6 +12,7 @@ export default defineConfig({
       dark: "#101010",
       grey: "#F1F1F1",
       lightGrey: "#FAFAFA",
+      danger: "#CD2C2C",
     },
   },
 });

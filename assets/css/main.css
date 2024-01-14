@@ -5,4 +5,9 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Manrope', sans-serif;
+    letter-spacing: 1px;
+}
+
+a{
+    text-decoration: none;
 }
