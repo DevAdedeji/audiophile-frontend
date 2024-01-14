@@ -2,7 +2,7 @@
   <main class="bg-lightBlack">
     <header>
       <Navbar />
-      <div class="w-90% mx-auto h-100vh flex items-center max-wid">
+      <div class="w-full md:w-90% mx-auto h-100vh flex items-center max-wid">
         <div
           class="custom-bg w-full lg:w-1/2 h-full bg-transparent flex flex-col gap-6 justify-center ml-auto items-center lg:items-start"
         >
