@@ -25,7 +25,7 @@
         <div
           class="!hidden lg:w-1/2 h-full bg-black flex items-center justify-center object-contain lg:!flex"
         >
-          <NuxtImg src="../assets/images/hero-image.png" />
+          <img src="../assets/images/hero-image.png" />
         </div>
       </div>
     </header>

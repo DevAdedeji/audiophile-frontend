@@ -4,10 +4,13 @@
   >
     <div class="flex items-center">
       <NuxtImg
-        src="../assets/icons/hamburger.svg"
+        src="/icons/hamburger.svg"
         class="block mr-10 lg:hidden"
+        width="16"
+        height="15"
       />
-      <NuxtImg src="../assets/images/logo.png" />
+
+      <NuxtImg src="../assets/images/logo.png" width="143" height="25" />
     </div>
     <ul class="hidden items-center gap-6 list-none lg:flex">
       <li v-for="link in links" :key="link.title">
@@ -19,7 +22,7 @@
       </li>
     </ul>
     <NuxtLink to="/" class="pr-4">
-      <NuxtImg src="../assets/icons/cart.svg" />
+      <NuxtImg src="/icons/cart.svg" width="23.33" height="20" />
     </NuxtLink>
   </nav>
 </template>

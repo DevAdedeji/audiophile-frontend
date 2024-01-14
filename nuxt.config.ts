@@ -6,4 +6,14 @@ export default defineNuxtConfig({
   supabase: {
     redirect: false,
   },
+  image: {
+    dir: "assets",
+    screens: {
+      sm: 320,
+      md: 640,
+      lg: 960,
+      xl: 1024,
+      xxl: 1280,
+    },
+  },
 });
