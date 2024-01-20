@@ -111,6 +111,13 @@ const links = ref([
     background-position: center -100px;
   }
 }
+
+@media (max-width: 700px) {
+  .p {
+    background-image: url("../assets/images/oval-3.png");
+    background-position: center -20px;
+  }
+}
 @media (min-width: 960px) {
   .custom-bg {
     background-image: none;
