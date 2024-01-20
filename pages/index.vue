@@ -80,6 +80,66 @@
         </div>
       </div>
     </section>
+    <section class="pb-30 w-90% mx-auto max-wid">
+      <div class="x h-320px rounded-md">
+        <div
+          class="w-65% lg:w-40% h-full flex flex-col gap-7 items-center justify-center"
+        >
+          <p class="text-black text-8 uppercase font-700">ZX7 SPEAKER</p>
+          <CustomButton2 label="See product" />
+        </div>
+      </div>
+    </section>
+    <section class="pb-30 w-90% mx-auto max-wid">
+      <div
+        class="flex flex-col md:flex-row items-center justify-between gap-30px"
+      >
+        <div class="w-full md:w-1/2 flex items-center justify-center">
+          <img
+            src="../assets/images/earphone.png"
+            class="rounded-md w-full h-320px object-cover"
+          />
+        </div>
+        <div
+          class="bg-grey w-full md:w-1/2 h-320px flex flex-col justify-center gap-7 px-10 lg:px-20 rounded-md"
+        >
+          <p class="text-black text-7 lg:text-8 uppercase font-700">
+            YX1 EARPHONES
+          </p>
+          <CustomButton2 label="See product" />
+        </div>
+      </div>
+    </section>
+    <section class="pb-30 w-90% mx-auto max-wid">
+      <div class="flex flex-col lg:flex-row items-center gap-20">
+        <div class="w-full lg:w-1/2">
+          <img
+            src="../assets/images/best-gear.png"
+            class="rounded-md w-full lg:h-588px object-cover"
+          />
+        </div>
+        <div
+          class="w-full lg:w-1/2 mx-auto flex flex-col items-center justify-center gap-8"
+        >
+          <h3
+            class="uppercase text-7 md:text-10 font-700 text-black text-center lg:text-left"
+          >
+            Bringing you the <span class="text-orange">best</span> audio gear
+          </h3>
+          <p
+            class="text-black opacity-50 text-4 font-500 text-center lg:text-left"
+            style="line-height: 25px"
+          >
+            Located at the heart of New York City, Audiophile is the premier
+            store for high end headphones, earphones, speakers, and audio
+            accessories. We have a large showroom and luxury demonstration rooms
+            available for you to browse and experience a wide range of our
+            products. Stop by our store to meet some of the fantastic people who
+            make Audiophile the best place to buy your portable audio equipment.
+          </p>
+        </div>
+      </div>
+    </section>
   </main>
 </template>
 
@@ -104,11 +164,20 @@ const links = ref([
   background-position: left;
   background-repeat: no-repeat;
 }
+.x {
+  background-image: url("../assets/images/speaker-standing.png");
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
 @media (max-width: 1024px) {
   .p {
     background-image: url("../assets/images/oval-2.png");
     background-size: contain;
     background-position: center -100px;
+  }
+  .x {
+    background-image: url("../assets/images/speaker-standing-2.png");
   }
 }
 
@@ -116,6 +185,9 @@ const links = ref([
   .p {
     background-image: url("../assets/images/oval-3.png");
     background-position: center -20px;
+  }
+  .x {
+    background-image: url("../assets/images/speaker-standing-3.png");
   }
 }
 @media (min-width: 960px) {
