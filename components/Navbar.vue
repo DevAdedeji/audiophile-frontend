@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="fixed top-0 right-0 left-0 h-10vh flex items-center justify-between w-90% mx-auto max-wid"
+    class="absolute top-0 right-0 left-0 h-10vh flex items-center justify-between w-90% mx-auto max-wid"
   >
     <div class="flex items-center">
       <img

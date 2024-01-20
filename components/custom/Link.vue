@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
     :to="url"
-    class="flex items-center gap-3 hover:text-orange text-black"
+    class="flex items-center gap-3 hover:text-orange text-black cursor-pointer"
   >
     <p class="text-3 uppercase">{{ title }}</p>
     <img src="../../assets/icons/right.svg" />
