@@ -83,7 +83,7 @@
     <section class="pb-30 w-90% mx-auto max-wid">
       <div class="x h-320px rounded-md">
         <div
-          class="w-65% lg:w-40% h-full flex flex-col gap-7 items-center justify-center"
+          class="px-6 lg:px-0 w-65% lg:w-40% h-full flex flex-col gap-7 items-center justify-center"
         >
           <p class="text-black text-8 uppercase font-700">ZX7 SPEAKER</p>
           <CustomButton2 label="See product" />
