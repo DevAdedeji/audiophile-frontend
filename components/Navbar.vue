@@ -69,34 +69,34 @@ const links = [
   },
   {
     title: "Headphones",
-    url: "/",
+    url: "/headphones",
   },
   {
     title: "Speakers",
-    url: "/",
+    url: "/speakers",
   },
   {
     title: "Earphones",
-    url: "/",
+    url: "/earphones",
   },
 ];
 const categorylinks = ref([
   {
     image: "/images/headphone.png",
     title: "Headphones",
-    link: "/",
+    link: "/headphones",
     alt: "headphone image",
   },
   {
     image: "/images/speaker.png",
     title: "Speakers",
-    link: "/",
+    link: "/speakers",
     alt: "speaker image",
   },
   {
     image: "/images/earphone.png",
     title: "Earphones",
-    link: "/",
+    link: "/earphones",
     alt: "earphone image",
   },
 ]);
