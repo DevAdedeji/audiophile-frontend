@@ -157,15 +157,15 @@ const links = [
   },
   {
     title: "Headphones",
-    url: "/",
+    url: "/headphones",
   },
   {
     title: "Speakers",
-    url: "/",
+    url: "/speakers",
   },
   {
     title: "Earphones",
-    url: "/",
+    url: "/earphones",
   },
 ];
 </script>

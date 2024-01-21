@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
-      title: "Audiophile",
+      title: "Audiophile - Your Premier Audio Equipment Destination",
       htmlAttrs: {
         lang: "en",
       },
@@ -17,25 +17,27 @@ export default defineNuxtConfig({
         {
           hid: "description",
           name: "description",
-          content: "Audiophile",
+          content:
+            "Audiophile: Discover the ultimate collection of audio devices tailored for audiophiles. Audiophile brings you a curated selection of high-fidelity headphones, speakers, turntables, and more. Experience the perfect blend of quality and acoustic excellence. Order now and immerse yourself in the sound.",
         },
         { name: "format-detection", content: "telephone=no" },
         {
           hid: "og:title",
           property: "og:title",
-          content: "Audiophile",
+          content: "Audiophile - Your Premier Audio Equipment Destination",
         },
         {
           hid: "og:description",
           property: "og:description",
-          content: "Audiophile",
+          content:
+            "Audiophile: Discover the ultimate collection of audio devices tailored for audiophiles. Audiophile brings you a curated selection of high-fidelity headphones, speakers, turntables, and more. Experience the perfect blend of quality and acoustic excellence. Order now and immerse yourself in the sound.",
         },
-        // {
-        //   hid: "og:image",
-        //   property: "og:image",
-        //   content:
-        //     "https://drive.google.com/uc?id=1AN1U9YUx1PQfTjvee5HrEsmZskoEFsm5",
-        // },
+        {
+          hid: "og:image",
+          property: "og:image",
+          content:
+            "https://drive.google.com/uc?id=1X8wfg7s47wjafKA_LoixBzkJnu1_XPEc",
+        },
       ],
     },
   },
