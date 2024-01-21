@@ -25,7 +25,7 @@
         <div
           class="!hidden lg:w-1/2 h-full bg-black flex items-center justify-center object-contain lg:!flex"
         >
-          <img src="../assets/images/hero-image.png" />
+          <img src="../assets/images/hero-image.png" alt="an headphone image" />
         </div>
       </div>
     </header>
@@ -41,6 +41,7 @@
           <img
             :src="link.image"
             class="absolute bottom-25 xl:bottom-35 w-170px h-170px object-contain"
+            :alt="link.alt"
           />
           <p class="uppercase text-black font-700 pt-8 xl:pt-0">
             {{ link.title }}
@@ -57,6 +58,7 @@
           <img
             src="/images/speaker.png"
             class="w-197px h-237px mt-10 xl:w-410px xl:h-493px object-contain xl:absolute xl:left-30 xl:right-0 xl:bottom-0 xl:-top-48"
+            alt="ZX9 SPEAKER image"
           />
         </div>
         <div
@@ -98,6 +100,7 @@
           <img
             src="../assets/images/earphone.png"
             class="rounded-md w-full h-320px object-cover"
+            alt="YX1 EARPHONES image"
           />
         </div>
         <div
@@ -116,6 +119,7 @@
           <img
             src="../assets/images/best-gear.png"
             class="rounded-md w-full lg:h-588px object-cover"
+            alt="A man listening to audio using headphone image"
           />
         </div>
         <div
@@ -146,9 +150,24 @@
 
 <script setup lang="ts">
 const links = ref([
-  { image: "/images/headphone.png", title: "Headphones", link: "/" },
-  { image: "/images/speaker.png", title: "Speakers", link: "/" },
-  { image: "/images/earphone.png", title: "Earphones", link: "/" },
+  {
+    image: "/images/headphone.png",
+    title: "Headphones",
+    link: "/",
+    alt: "headphone image",
+  },
+  {
+    image: "/images/speaker.png",
+    title: "Speakers",
+    link: "/",
+    alt: "speaker image",
+  },
+  {
+    image: "/images/earphone.png",
+    title: "Earphones",
+    link: "/",
+    alt: "earphone image",
+  },
 ]);
 </script>
 
