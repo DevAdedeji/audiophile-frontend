@@ -2,9 +2,8 @@
   <div class="bg-white w-full">
     <header class="bg-black">
       <Navbar />
-      <slot name="header" />
     </header>
-    <slot name="content" />
+    <slot />
     <TheBest class="pt-30" />
     <Footer />
   </div>

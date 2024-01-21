@@ -15,7 +15,7 @@
       type="text"
       class="h-14 w-full bg-transparent outline-none input-border rounded-2 px-4 focus:border-orange caret-orange"
       :class="error ? '!border-danger' : ''"
-      :placeholder
+      :placeholder="placeholder"
     />
   </div>
 </template>

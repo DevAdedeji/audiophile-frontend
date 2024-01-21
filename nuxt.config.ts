@@ -42,18 +42,8 @@ export default defineNuxtConfig({
     },
   },
   css: ["/assets/css/main.css"],
-  modules: ["@unocss/nuxt", "@nuxt/image", "@nuxtjs/supabase"],
+  modules: ["@unocss/nuxt", "@nuxtjs/supabase"],
   supabase: {
     redirect: false,
-  },
-  image: {
-    dir: "assets",
-    screens: {
-      sm: 320,
-      md: 640,
-      lg: 960,
-      xl: 1024,
-      xxl: 1280,
-    },
   },
 });

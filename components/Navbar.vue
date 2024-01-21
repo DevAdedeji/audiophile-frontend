@@ -11,12 +11,14 @@
         <img src="../assets/icons/hamburger.svg" alt="menu icon" />
       </button>
 
-      <img
-        src="../assets/images/logo.png"
-        width="143"
-        height="25"
-        alt="Audiophile logo"
-      />
+      <NuxtLink to="/" class="flex items-center justify-center">
+        <img
+          src="../assets/images/logo.png"
+          width="143"
+          height="25"
+          alt="Audiophile logo"
+        />
+      </NuxtLink>
     </div>
     <ul class="hidden items-center gap-6 list-none lg:flex">
       <li v-for="link in links" :key="link.title">
@@ -50,11 +52,16 @@
           <img
             :src="link.image"
             class="absolute bottom-25 xl:bottom-35 w-84px h-101px object-contain img-mobile"
+            :alt="link.alt"
           />
           <p class="uppercase text-black font-700 pt-8 xl:pt-0">
             {{ link.title }}
           </p>
-          <CustomLink :title="'Shop'" :url="link.link" />
+          <CustomLink
+            :title="'Shop'"
+            :url="link.link"
+            @click.stop="showMobileMenu = false"
+          />
         </div>
       </div>
     </div>
