@@ -24,7 +24,8 @@
       <li v-for="link in links" :key="link.title">
         <NuxtLink
           :to="link.url"
-          class="text-white uppercase text-3 hover:text-orange"
+          class="uppercase text-3 hover:text-orange"
+          :class="route.path === link.url ? 'text-orange' : 'text-white'"
           >{{ link.title }}</NuxtLink
         >
       </li>
@@ -69,6 +70,7 @@
 </template>
 
 <script setup lang="ts">
+const route = useRoute();
 const links = [
   {
     title: "Home",
