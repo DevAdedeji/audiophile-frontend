@@ -15,7 +15,7 @@
           class="flex flex-col lg:flex-row items-center gap-20"
         >
           <div
-            class="w-full lg:w-1/2 flex flex-col gap-8 px-8"
+            class="w-full lg:w-1/2 flex flex-col gap-8 md:px-8"
             :class="
               index % 2 === 0 ? 'order-2 lg:order-2' : 'order-2 lg:order-1'
             "
