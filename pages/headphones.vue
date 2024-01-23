@@ -7,7 +7,7 @@
         Headphones
       </h1>
     </div>
-    <section class="py-30 w-90% mx-auto max-wid">
+    <section class="py-20 w-90% mx-auto max-wid">
       <div v-if="products.length" class="flex flex-col gap-20">
         <div
           v-for="(product, index) in products"

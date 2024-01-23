@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout>
-    <div v-if="loading" class="loading">
+    <div v-if="loading" class="loading cursor-not-allowed">
       <div class="h-5px bg-orange progress-bar"></div>
     </div>
     <NuxtPage />
@@ -23,15 +23,26 @@ import { loading } from "./composables/core/loader";
   z-index: 99999999;
 }
 .progress-bar {
-  animation: moveProgress 1s linear infinite;
+  width: 100%;
+  position: absolute;
+  height: 5px;
+  animation-name: loader-animation;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
 }
-@keyframes moveProgress {
-  0%,
-  100% {
-    width: 0;
+@keyframes loader-animation {
+  0% {
+    left: -80%;
+  }
+  49% {
+    left: 80%;
   }
   50% {
-    width: 100%;
+    left: 80%;
+  }
+  100% {
+    left: -80%;
   }
 }
 </style>
