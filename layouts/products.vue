@@ -8,3 +8,10 @@
     <Footer />
   </div>
 </template>
+
+<script setup>
+import { loading } from "~/composables/core/loader";
+onBeforeMount(() => {
+  loading.value = true;
+});
+</script>

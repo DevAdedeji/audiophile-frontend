@@ -35,7 +35,11 @@
             >
               {{ product.description }}
             </p>
-            <CustomButton label="See product" class="mx-auto lg:mx-0" />
+            <CustomButton
+              label="See product"
+              :to="`/product/${product.id}`"
+              class="mx-auto lg:mx-0"
+            />
           </div>
           <div
             class="w-full lg:w-1/2 flex items-center justify-center"
@@ -60,27 +64,14 @@
 </template>
 
 <script setup lang="ts">
-import { type ProductEntity } from "../composables/products/types";
-import { loading } from "../composables/core/loader";
-const client = useSupabaseClient();
+import { useFetchProducts } from "~/composables/products/products";
 definePageMeta({
   layout: "products",
 });
-const products = ref<ProductEntity[]>([]);
-const fetchProducts = async (category: string) => {
-  const { data, error } = await client
-    .from("products")
-    .select("*")
-    .eq("category", category);
-  if (data) {
-    products.value = data;
-  } else if (error) {
-    console.log(error);
-  }
-  loading.value = false;
-};
+
+const { fetchProducts, products } = useFetchProducts();
+
 onBeforeMount(async () => {
-  loading.value = true;
   await fetchProducts("headphone");
 });
 </script>

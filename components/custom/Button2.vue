@@ -1,17 +1,26 @@
 <template>
-  <button
-    class="bg-transparent h-12 w-40 text-black outline-none border border-black hover:bg-black hover:text-white cursor-pointer uppercase text-sm"
+  <component
+    :is="componentType"
+    class="bg-transparent h-12 w-40 text-black outline-none border border-black hover:bg-black hover:text-white cursor-pointer uppercase text-sm flex items-center justify-center"
+    :to="to"
   >
     {{ label }}
-  </button>
+  </component>
 </template>
 
 <script setup lang="ts">
-defineProps({
+const props = defineProps({
   label: {
     type: String,
     default: "",
     required: true,
   },
+  to: {
+    type: String,
+    default: "",
+    required: false,
+  },
 });
+const NuxtLink = resolveComponent("NuxtLink");
+const componentType = computed(() => (props.to ? NuxtLink : "button"));
 </script>
