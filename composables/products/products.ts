@@ -1,11 +1,13 @@
-import { loading } from "../../composables/core/loader";
+import { useLoader } from "../../composables/core/loader";
 import { type ProductEntity } from "./types";
 export const allProducts = ref<ProductEntity[]>([]);
 export const useFetchProducts = () => {
-  const client = useSupabaseClient();
+  // States
+  const { loading } = useLoader();
   const products = ref<ProductEntity[]>([]);
   const product = ref<ProductEntity | null>(null);
-
+  // Supabase client
+  const client = useSupabaseClient();
   const fetchAllProducts = async () => {
     const { data, error } = await client.from("products").select("*");
     if (data) {

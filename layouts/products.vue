@@ -11,7 +11,8 @@
 
 <script setup>
 import { useFetchProducts } from "~/composables/products/products";
-import { loading } from "~/composables/core/loader";
+import { useLoader } from "~/composables/core/loader";
+const { loading } = useLoader();
 const { fetchAllProducts, allProducts } = useFetchProducts();
 onBeforeMount(async () => {
   loading.value = true;

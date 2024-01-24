@@ -8,7 +8,8 @@
 </template>
 
 <script setup lang="ts">
-import { loading } from "./composables/core/loader";
+import { useLoader } from "./composables/core/loader";
+const { loading } = useLoader();
 </script>
 
 <style scoped>
