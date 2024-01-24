@@ -17,14 +17,21 @@ export const useFetchProducts = () => {
 
   const fetchProductsByCategory = async (category: string) => {
     loading.value = true;
-    const { data, error } = await client
-      .from("products")
-      .select("*")
-      .eq("category", category);
-    if (data) {
-      products.value = data;
-    } else if (error) {
-      console.log(error);
+    if (!allProducts.value.length) {
+      const { data, error } = await client
+        .from("products")
+        .select("*")
+        .eq("category", category);
+      if (data) {
+        products.value = data;
+      } else if (error) {
+        console.log(error);
+      }
+    } else {
+      const filteredProducts = allProducts.value.filter(
+        (product) => product.category === category,
+      );
+      products.value = filteredProducts;
     }
     loading.value = false;
   };

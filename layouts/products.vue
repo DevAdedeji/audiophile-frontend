@@ -12,9 +12,11 @@
 <script setup>
 import { useFetchProducts } from "~/composables/products/products";
 import { loading } from "~/composables/core/loader";
-const { fetchAllProducts } = useFetchProducts();
+const { fetchAllProducts, allProducts } = useFetchProducts();
 onBeforeMount(async () => {
   loading.value = true;
-  await fetchAllProducts();
+  if (!allProducts.value.length) {
+    await fetchAllProducts();
+  }
 });
 </script>
