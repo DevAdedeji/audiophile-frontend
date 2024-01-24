@@ -20,7 +20,7 @@
             Experience natural, lifelike audio and exceptional build quality
             made for the passionate music enthusiast.
           </p>
-          <CustomButton label="See Product" />
+          <CustomButton label="See Product" :to="`/product/1`" />
         </div>
         <div
           class="!hidden lg:w-1/2 h-full bg-black flex items-center justify-center object-contain lg:!flex"
@@ -57,7 +57,8 @@
           </p>
           <CustomButton2
             label="See product"
-            class="!bg-black !text-white mt-6 xl:mt-0 hover:opacity-90"
+            :to="`/product/5`"
+            class="!bg-black !text-white mt-6 xl:mt-0 hover:!opacity-90"
           />
         </div>
       </div>
@@ -68,7 +69,11 @@
           class="px-6 lg:px-0 w-65% lg:w-40% h-full flex flex-col gap-7 items-center justify-center"
         >
           <p class="text-black text-8 uppercase font-700">ZX7 SPEAKER</p>
-          <CustomButton2 label="See product" />
+          <CustomButton2
+            label="See product"
+            :to="`/product/6`"
+            class="!bg-black !text-white mt-6 xl:mt-0 hover:!opacity-90"
+          />
         </div>
       </div>
     </section>
@@ -89,7 +94,11 @@
           <p class="text-black text-7 lg:text-8 uppercase font-700">
             YX1 EARPHONES
           </p>
-          <CustomButton2 label="See product" />
+          <CustomButton2
+            label="See product"
+            :to="`/product/4`"
+            class="!bg-black !text-white mt-6 xl:mt-0 hover:!opacity-90"
+          />
         </div>
       </div>
     </section>

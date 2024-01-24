@@ -10,8 +10,11 @@
 </template>
 
 <script setup>
+import { useFetchProducts } from "~/composables/products/products";
 import { loading } from "~/composables/core/loader";
-onBeforeMount(() => {
+const { fetchAllProducts } = useFetchProducts();
+onBeforeMount(async () => {
   loading.value = true;
+  await fetchAllProducts();
 });
 </script>

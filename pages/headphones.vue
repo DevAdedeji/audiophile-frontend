@@ -69,10 +69,10 @@ definePageMeta({
   layout: "products",
 });
 
-const { fetchProducts, products } = useFetchProducts();
+const { fetchProductsByCategory, products } = useFetchProducts();
 
 onBeforeMount(async () => {
-  await fetchProducts("headphone");
+  await fetchProductsByCategory("headphone");
 });
 </script>
 

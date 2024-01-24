@@ -68,10 +68,10 @@ import { useFetchProducts } from "~/composables/products/products";
 definePageMeta({
   layout: "products",
 });
-const { fetchProducts, products } = useFetchProducts();
+const { fetchProductsByCategory, products } = useFetchProducts();
 
 onBeforeMount(async () => {
-  await fetchProducts("speaker");
+  await fetchProductsByCategory("speaker");
 });
 </script>
 
