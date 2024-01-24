@@ -40,7 +40,7 @@
               {{ "₦" + product.price.toLocaleString() }}
             </p>
             <div class="flex items-center gap-1">
-              <div class="bg-grey flex items-center gap-3 p-3">
+              <div class="bg-grey flex items-center gap-3 h-12 px-3">
                 <button
                   class="border-none outline-none text-6 text-black opacity-50 px-3 cursor-pointer"
                   @click="quantity > 1 ? quantity-- : ''"
@@ -61,16 +61,16 @@
         </div>
         <!-- Product features -->
         <div class="flex flex-col lg:flex-row justify-between gap-20">
-          <div class="w-full lg:w-60% flex flex-col gap-8">
+          <div class="w-full lg:w-60% flex flex-col gap-6 lg:gap-8">
             <h3 class="text-8 uppercase text-black">FEATURES</h3>
             <p
-              class="w-90% text-black font-500 opacity-50"
+              class="w-full lg:w-90% text-black font-500 opacity-50"
               style="line-height: 25px"
             >
               {{ product.feature_desc }}
             </p>
           </div>
-          <div class="w-full lg:w-30% flex flex-col gap-8">
+          <div class="w-full lg:w-30% flex flex-col gap-6 lg:gap-8">
             <h3 class="text-8 uppercase text-black">In the box</h3>
             <ul class="list-none flex flex-col gap-2">
               <li
@@ -99,7 +99,9 @@
         </div>
       </div>
       <div v-if="PRODUCTS_YOU_MAY_LIKE.length" class="mt-30">
-        <h3 class="text-black uppercase text-8 font-700 text-center pb-10">
+        <h3
+          class="text-black uppercase text-6 lg:text-8 font-700 text-center pb-10"
+        >
           You may also like
         </h3>
         <div class="flex flex-col lg:flex-row gap-15 lg:gap-5">
@@ -116,7 +118,9 @@
                 class="object-contain w-199px h-199px"
               />
             </div>
-            <p class="text-black text-6 uppercase">{{ randomProduct.name }}</p>
+            <p class="text-black text-6 uppercase text-center">
+              {{ randomProduct.name }}
+            </p>
             <CustomButton
               label="See product"
               :to="`/product/${randomProduct.id}`"
@@ -158,7 +162,6 @@ function selectRandomThree<T>(array: T[]): T[] {
   return shuffledArray.slice(0, 3);
 }
 const PRODUCTS_YOU_MAY_LIKE = computed(() => {
-  console.log(allProducts.value);
   if (allProducts.value.length) {
     const randomProducts = selectRandomThree(allProducts.value);
     return randomProducts;
