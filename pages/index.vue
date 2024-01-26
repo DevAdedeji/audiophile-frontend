@@ -107,7 +107,12 @@
   </main>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useCustomHead } from "~/composables/core/seo";
+onBeforeMount(() => {
+  useCustomHead("", "", "");
+});
+</script>
 
 <style>
 .custom-bg {

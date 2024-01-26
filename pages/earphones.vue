@@ -65,10 +65,13 @@
 
 <script setup lang="ts">
 import { useFetchProducts } from "~/composables/products/products";
+import { useCustomHead } from "~/composables/core/seo";
 definePageMeta({
   layout: "products",
 });
 const { fetchProductsByCategory, products } = useFetchProducts();
+
+useCustomHead("Earphones", "", "");
 
 onBeforeMount(async () => {
   await fetchProductsByCategory("earphone");

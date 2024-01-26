@@ -136,6 +136,7 @@
 
 <script setup lang="ts">
 import { useFetchProducts } from "~/composables/products/products";
+import { useCustomHead } from "~/composables/core/seo";
 definePageMeta({
   layout: "products",
 });
@@ -144,6 +145,14 @@ const router = useRouter();
 const productId = route.params.id as string;
 const quantity = ref(1);
 const { fetchProduct, product, allProducts } = useFetchProducts();
+
+watch(product, () => {
+  useCustomHead(
+    product.value?.name || "",
+    product.value?.description || "",
+    product.value?.image || "",
+  );
+});
 
 function selectRandomThree<T>(array: T[]): T[] {
   // If the array has less than 3 items, return the array itself
@@ -169,6 +178,7 @@ const PRODUCTS_YOU_MAY_LIKE = computed(() => {
   return [];
 });
 onBeforeMount(async () => {
+  useCustomHead("", "", "");
   await fetchProduct(productId);
 });
 </script>
