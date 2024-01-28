@@ -32,7 +32,7 @@
     </ul>
     <button
       class="pr-4 border-none outline-none bg-transparent cursor-pointer"
-      @click="showCartModal = !showCartModal"
+      @click="openCartModal"
     >
       <img
         src="../assets/icons/cart.svg"
@@ -74,8 +74,9 @@
 </template>
 
 <script setup lang="ts">
-import { useCartModal } from "../composables/core/cart";
+import { toast } from "vue3-toastify";
 const { showCartModal } = useCartModal();
+const { login } = useAuth();
 const route = useRoute();
 const links = [
   {
@@ -116,6 +117,17 @@ const categorylinks = ref([
   },
 ]);
 const showMobileMenu = ref(false);
+const user = useSupabaseUser();
+const openCartModal = () => {
+  if (user.value) {
+    showCartModal.value = !showCartModal.value;
+  } else {
+    toast.error("Pls login first to view your cart", {
+      theme: "auto",
+    });
+    login();
+  }
+};
 </script>
 
 <style scoped>

@@ -55,7 +55,7 @@
                   +
                 </button>
               </div>
-              <CustomButton label="Add to cart" />
+              <CustomButton label="Add to cart" @click="addToCart" />
             </div>
           </div>
         </div>
@@ -135,11 +135,12 @@
 </template>
 
 <script setup lang="ts">
-import { useFetchProducts } from "~/composables/products/products";
-import { useCustomHead } from "~/composables/core/seo";
+import { toast } from "vue3-toastify";
 definePageMeta({
   layout: "products",
 });
+const { login } = useAuth();
+const user = useSupabaseUser();
 const route = useRoute();
 const router = useRouter();
 const productId = route.params.id as string;
@@ -177,6 +178,14 @@ const PRODUCTS_YOU_MAY_LIKE = computed(() => {
   }
   return [];
 });
+const addToCart = () => {
+  if (!user.value) {
+    toast.error("Pls login first to add to cart", {
+      theme: "auto",
+    });
+    login();
+  }
+};
 onBeforeMount(async () => {
   useCustomHead("", "", "");
   await fetchProduct(productId);

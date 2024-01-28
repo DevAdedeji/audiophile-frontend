@@ -108,7 +108,6 @@
 </template>
 
 <script setup lang="ts">
-import { useCustomHead } from "~/composables/core/seo";
 onBeforeMount(() => {
   useCustomHead("", "", "");
 });

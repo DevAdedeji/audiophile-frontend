@@ -43,6 +43,25 @@ export default defineNuxtConfig({
   },
   css: ["/assets/css/main.css"],
   modules: ["@unocss/nuxt", "@nuxtjs/supabase"],
+  plugins: [{ mode: "client", src: "~/plugins/toast" }],
+  runtimeConfig: {
+    public: {
+      frontendBaseUrl:
+        process.env.NODE_ENV === "production"
+          ? "https://audiophile-dev.vercel.app"
+          : "http://localhost:3000",
+    },
+  },
+  imports: {
+    dirs: [
+      // Scan top-level modules
+      "composables",
+      // ... or scan modules nested one level deep with a specific name and file extension
+      "composables/*/index.{ts,js,mjs,mts}",
+      // ... or scan all modules within given directory
+      "composables/**",
+    ],
+  },
   supabase: {
     redirect: false,
   },

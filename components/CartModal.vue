@@ -11,6 +11,7 @@
             Cart ({{ cartItems.length }})
           </h2>
           <button
+            ref="clearCartIcon"
             class="cursor-pointer bg-transparent outline-none border-none opacity-50"
           >
             Clear all
@@ -88,11 +89,17 @@ const cartItems = ref([
     quantity: 1,
   },
 ]);
+const clearCartIcon = ref<HTMLButtonElement | null>(null);
 const totalAmount = computed(() =>
   cartItems.value.reduce((acc, item) => {
     return acc + item.price * item.quantity;
   }, 0),
 );
+onMounted(() => {
+  if (process.client) {
+    clearCartIcon.value?.focus();
+  }
+});
 </script>
 
 <style scoped>
