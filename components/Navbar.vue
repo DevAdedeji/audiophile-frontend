@@ -30,14 +30,17 @@
         >
       </li>
     </ul>
-    <NuxtLink to="/" class="pr-4">
+    <button
+      class="pr-4 border-none outline-none bg-transparent cursor-pointer"
+      @click="showCartModal = !showCartModal"
+    >
       <img
         src="../assets/icons/cart.svg"
         width="23.33"
         height="20"
         alt="cart icon"
       />
-    </NuxtLink>
+    </button>
     <div
       v-if="showMobileMenu"
       class="absolute top-10vh left-0 right-0 w-full z-100 bg-white rounded-b-md shadow-md lg:!hidden"
@@ -66,10 +69,13 @@
         </div>
       </div>
     </div>
+    <CartModal v-if="showCartModal" />
   </nav>
 </template>
 
 <script setup lang="ts">
+import { useCartModal } from "../composables/core/cart";
+const { showCartModal } = useCartModal();
 const route = useRoute();
 const links = [
   {
