@@ -214,12 +214,12 @@
 </template>
 
 <script setup lang="ts">
-import { toast } from "vue3-toastify";
 import { useVuelidate } from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
 import { type PaymentOptions } from "~/composables/products/types";
 const { loading } = useLoader();
 const { cartItems, fetchCartItems, clearCart } = useCart();
+const { showOrderModal } = useOrderModal();
 definePageMeta({
   layout: "products",
   middleware: ["auth"],
@@ -303,19 +303,16 @@ const makePayment = async () => {
         tx_ref: "ay_" + Math.floor(Math.random() * 1000000000 + 1),
         amount: grandTotal.value,
         currency: "NGN",
+        payment_optiona: "banktransfer",
+        redirect_url: null,
+        followRedirects: false,
         customer: {
           email: form.value.email,
           phonenumber: form.value.phone,
           name: form.value.name,
         },
-        callback: async function (data: any) {
-          const reference = data.tx_ref;
-          toast.success(
-            `Payemnt successful, Order placed successfully ${reference}`,
-            {
-              theme: "auto",
-            },
-          );
+        callback: async function () {
+          showOrderModal.value = true;
           await clearCart();
         },
         customizations: {
@@ -325,9 +322,9 @@ const makePayment = async () => {
         },
       });
     } else {
-      toast.success("Order placed successfully", {
-        theme: "auto",
-      });
+      showOrderModal.value = true;
+      await clearCart();
+      router.push("/");
     }
   }
 };

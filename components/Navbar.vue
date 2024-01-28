@@ -70,12 +70,14 @@
       </div>
     </div>
     <CartModal v-if="showCartModal" />
+    <OrderCompletedModal v-if="showOrderModal" />
   </nav>
 </template>
 
 <script setup lang="ts">
 import { toast } from "vue3-toastify";
 const { showCartModal } = useCartModal();
+const { showOrderModal } = useOrderModal();
 const { login } = useAuth();
 const route = useRoute();
 const links = [
