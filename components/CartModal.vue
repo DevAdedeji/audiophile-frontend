@@ -71,7 +71,12 @@
                 {{ "₦" + totalAmount.toLocaleString() }}
               </p>
             </div>
-            <CustomButton label="Checkout" class="w-full my-2" />
+            <CustomButton
+              label="Checkout"
+              class="w-full my-2"
+              to="/checkout"
+              @click.stop="showCartModal = false"
+            />
           </div>
           <div v-else>
             <p class="text-black text-lg font-700 text-center py-10">

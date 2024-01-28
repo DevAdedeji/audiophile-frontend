@@ -10,6 +10,8 @@ export const useCart = () => {
   const client = useSupabaseClient();
   //   Logged in user
   const user = useSupabaseUser();
+  const route = useRoute();
+  const router = useRouter();
   const fetchCartItems = async () => {
     if (user.value) {
       fetching.value = true;
@@ -20,6 +22,11 @@ export const useCart = () => {
         .eq("user_id", userId);
       if (data) {
         cartItems.value = data;
+        if (route.path === "/checkout") {
+          if (!cartItems.value.length) {
+            router.push("/");
+          }
+        }
       } else if (error) {
         toast.error(error.message, {
           theme: "auto",
@@ -58,6 +65,9 @@ export const useCart = () => {
         toast.success("Cart cleared successfully", {
           theme: "auto",
         });
+        if (route.path === "/checkout") {
+          router.push("/");
+        }
       } else if (error) {
         toast.error(error.message, {
           theme: "auto",

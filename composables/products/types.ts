@@ -20,3 +20,9 @@ export interface CartedProductEntity extends ProductEntity {
   quantity: number;
   user_id: string;
 }
+
+export interface PaymentOptions {
+  id: number;
+  placeholder: string;
+  isSelected: boolean;
+}

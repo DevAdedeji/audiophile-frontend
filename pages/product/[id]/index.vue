@@ -1,9 +1,9 @@
 <template>
-  <main>
+  <main class="bg-grey">
     <div class="w-90% mx-auto">
       <div class="py-10">
         <button
-          class="outline-none border-none text-4 font-500 text-black opacity-50 cursor-pointer"
+          class="bg-transparent outline-none border-none text-4 font-500 text-black opacity-50 cursor-pointer hover:text-orange hover:opacity-100"
           @click="router.go(-1)"
         >
           Go back

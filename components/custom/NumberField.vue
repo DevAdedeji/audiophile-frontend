@@ -15,7 +15,7 @@
     <input
       :id="label"
       v-model="modelValue"
-      :type="type"
+      type="tel"
       :for="label"
       :name="label"
       class="h-14 w-full bg-transparent outline-none input-border rounded-2 px-4 focus:border-orange caret-orange"
@@ -30,11 +30,6 @@ defineProps({
   label: {
     type: String,
     default: "",
-  },
-  type: {
-    type: String,
-    default: "text",
-    required: false,
   },
   placeholder: {
     type: String,
