@@ -55,7 +55,12 @@
                   +
                 </button>
               </div>
-              <CustomButton label="Add to cart" @click="addToCart" />
+              <CustomButton
+                :label="adding ? 'Adding...' : 'Add to cart'"
+                :disabled="adding"
+                :class="adding ? 'cursor-not-allowed opacity-50' : ''"
+                @click="addProductToCart"
+              />
             </div>
           </div>
         </div>
@@ -146,6 +151,7 @@ const router = useRouter();
 const productId = route.params.id as string;
 const quantity = ref(1);
 const { fetchProduct, product, allProducts } = useFetchProducts();
+const { adding, addToCart } = useCart();
 
 watch(product, () => {
   useCustomHead(
@@ -178,8 +184,17 @@ const PRODUCTS_YOU_MAY_LIKE = computed(() => {
   }
   return [];
 });
-const addToCart = () => {
-  if (!user.value) {
+const addProductToCart = async () => {
+  if (user.value) {
+    if (product.value) {
+      const cartProduct = {
+        ...product.value,
+        quantity: quantity.value,
+        user_id: user.value.id,
+      };
+      await addToCart(cartProduct);
+    }
+  } else {
     toast.error("Pls login first to add to cart", {
       theme: "auto",
     });

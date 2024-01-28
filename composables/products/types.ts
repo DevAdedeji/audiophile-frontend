@@ -15,3 +15,8 @@ export interface ProductEntity {
   price: number;
   isNew: boolean;
 }
+
+export interface CartedProductEntity extends ProductEntity {
+  quantity: number;
+  user_id: string;
+}

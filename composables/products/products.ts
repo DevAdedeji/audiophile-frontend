@@ -1,4 +1,4 @@
-import { useLoader } from "../../composables/core/loader";
+import { toast } from "vue3-toastify";
 import { type ProductEntity } from "./types";
 export const allProducts = ref<ProductEntity[]>([]);
 export const useFetchProducts = () => {
@@ -13,7 +13,9 @@ export const useFetchProducts = () => {
     if (data) {
       allProducts.value = data;
     } else if (error) {
-      console.log(error);
+      toast.error(error.message, {
+        theme: "auto",
+      });
     }
   };
 
@@ -27,7 +29,9 @@ export const useFetchProducts = () => {
       if (data) {
         products.value = data;
       } else if (error) {
-        console.log(error);
+        toast.error(error.message, {
+          theme: "auto",
+        });
       }
     } else {
       const filteredProducts = allProducts.value.filter(
@@ -47,7 +51,9 @@ export const useFetchProducts = () => {
     if (data) {
       product.value = data[0];
     } else if (error) {
-      console.log(error);
+      toast.error(error.message, {
+        theme: "auto",
+      });
     }
     loading.value = false;
   };
