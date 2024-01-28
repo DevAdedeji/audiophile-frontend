@@ -33,26 +33,26 @@
               </p>
               <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 pt-8">
                 <CustomTextField
-                  :model-value="form.name"
+                  v-model="form.name"
                   label="Name"
                   placeholder="Your name"
                   error-msg="Name is required"
-                  :error="false"
+                  :error="$v.name.$error"
                 />
                 <CustomTextField
+                  v-model="form.email"
                   type="email"
-                  :model-value="form.email"
                   label="Email Address"
                   placeholder="Your email address"
                   error-msg="Email is required"
-                  :error="false"
+                  :error="$v.email.$error"
                 />
                 <CustomNumberField
-                  :model-value="form.phone"
+                  v-model="form.phone"
                   label="Phone Number"
                   placeholder="+ (234) 81 419 9233"
                   error-msg="Phone number is required"
-                  :error="false"
+                  :error="$v.phone.$error"
                 />
               </div>
             </div>
@@ -66,32 +66,32 @@
               </p>
               <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 pt-8">
                 <CustomTextField
-                  :model-value="form.address"
+                  v-model="form.address"
                   label="Address"
                   placeholder="1137 Williams Avenue"
                   error-msg="Address is required"
-                  :error="false"
+                  :error="$v.address.$error"
                 />
                 <CustomTextField
-                  :model-value="form.zip_code"
+                  v-model="form.zip_code"
                   label="ZIP Code"
                   placeholder="211102"
                   error-msg="Zip code is required"
-                  :error="false"
+                  :error="$v.zip_code.$error"
                 />
                 <CustomTextField
-                  :model-value="form.city"
+                  v-model="form.city"
                   label="City"
                   placeholder="New york"
                   error-msg="City is required"
-                  :error="false"
+                  :error="$v.city.$error"
                 />
                 <CustomTextField
-                  :model-value="form.country"
+                  v-model="form.country"
                   label="Country"
                   placeholder="USA"
                   error-msg="Country is required"
-                  :error="false"
+                  :error="$v.country.$error"
                 />
               </div>
             </div>
@@ -195,7 +195,12 @@
                 {{ "₦" + grandTotal }}
               </p>
             </div>
-            <CustomButton label="Continue" class="my-4 w-full" />
+            <CustomButton
+              type="submit"
+              label="Continue"
+              class="my-4 w-full"
+              @click="makePayment"
+            />
           </div>
           <div v-else>
             <p class="text-black text-lg font-700 text-center py-10">
@@ -209,16 +214,21 @@
 </template>
 
 <script setup lang="ts">
+import { toast } from "vue3-toastify";
+import { useVuelidate } from "@vuelidate/core";
+import { required } from "@vuelidate/validators";
 import { type PaymentOptions } from "~/composables/products/types";
 const { loading } = useLoader();
-const { cartItems, fetchCartItems } = useCart();
+const { cartItems, fetchCartItems, clearCart } = useCart();
 definePageMeta({
   layout: "products",
   middleware: ["auth"],
 });
 const router = useRouter();
+// At the top of your <script> or within the setup function
+declare let FlutterwaveCheckout: any;
 
-const form = reactive({
+const form = ref({
   name: "",
   email: "",
   phone: "",
@@ -228,6 +238,21 @@ const form = reactive({
   country: "",
   paymentOption: 1,
 });
+
+const rules = computed(() => {
+  return {
+    name: { required },
+    email: { required },
+    phone: { required },
+    address: { required },
+    zip_code: { required },
+    city: { required },
+    country: { required },
+    paymentOption: { required },
+  };
+});
+
+const $v = useVuelidate(rules, form.value);
 
 const paymentOptions = ref<PaymentOptions[]>([
   {
@@ -247,7 +272,7 @@ const paymentOptionChosen = (val: PaymentOptions) => {
   const option = paymentOptions.value.find((p) => val.id === p.id);
   if (option) {
     option.isSelected = true;
-    form.paymentOption = option.id;
+    form.value.paymentOption = option.id;
   }
 };
 
@@ -260,12 +285,52 @@ const totalAmount = computed(() => {
     return 0;
   }
 });
-const shippingCost = 100;
-const vat = 100;
+const shippingCost = 10;
+const vat = 10;
 
 const grandTotal = computed(() => {
   return totalAmount.value + vat + shippingCost;
 });
+
+const makePayment = async () => {
+  const isFormCorrect = await $v.value.$validate();
+  if (isFormCorrect) {
+    if (form.value.paymentOption === 1) {
+      const config = useRuntimeConfig();
+      const publicKey = config.public.flutterwave_public_key;
+      FlutterwaveCheckout({
+        public_key: publicKey,
+        tx_ref: "ay_" + Math.floor(Math.random() * 1000000000 + 1),
+        amount: grandTotal.value,
+        currency: "NGN",
+        customer: {
+          email: form.value.email,
+          phonenumber: form.value.phone,
+          name: form.value.name,
+        },
+        callback: async function (data: any) {
+          const reference = data.tx_ref;
+          toast.success(
+            `Payemnt successful, Order placed successfully ${reference}`,
+            {
+              theme: "auto",
+            },
+          );
+          await clearCart();
+        },
+        customizations: {
+          title: "Audiophile - Your Premier Audio Equipment Destination",
+          description: "Audiophile payment integration",
+          logo: "https://res.cloudinary.com/dtomoi7fb/image/upload/v1706475334/favicon_hbppix.ico",
+        },
+      });
+    } else {
+      toast.success("Order placed successfully", {
+        theme: "auto",
+      });
+    }
+  }
+};
 
 onBeforeMount(async () => {
   await fetchCartItems();
@@ -275,8 +340,8 @@ onBeforeMount(async () => {
 onMounted(() => {
   const user = useSupabaseUser();
   if (user.value) {
-    form.email = user.value.user_metadata.email;
-    form.name = user.value.user_metadata.full_name;
+    form.value.email = user.value.user_metadata.email;
+    form.value.name = user.value.user_metadata.full_name;
   }
 });
 </script>

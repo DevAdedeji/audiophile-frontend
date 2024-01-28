@@ -7,6 +7,7 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: "en",
       },
+      script: [{ src: "https://checkout.flutterwave.com/v3.js" }],
       meta: [
         { charset: "utf-8" },
         {
@@ -50,6 +51,14 @@ export default defineNuxtConfig({
         process.env.NODE_ENV === "production"
           ? "https://audiophile-dev.vercel.app"
           : "http://localhost:3000",
+      flutterwave_public_key: process.env.NUXT_FLUTTERWAVE_PUBLIC_KEY,
+    },
+  },
+  vite: {
+    vue: {
+      script: {
+        defineModel: true,
+      },
     },
   },
   imports: {
