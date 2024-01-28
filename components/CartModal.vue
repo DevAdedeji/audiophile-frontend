@@ -1,6 +1,6 @@
 <template>
   <div class="modal" @click.stop="showCartModal = false">
-    <div class="w-90% mx-auto flex items-center mt-15vh pr-4">
+    <div class="w-90% mx-auto flex items-center mt-15vh md:pr-4">
       <div
         class="w-full md:w-377px ml-auto bg-white rounded-md p-6"
         @click.stop
