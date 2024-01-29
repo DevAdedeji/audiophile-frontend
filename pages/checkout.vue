@@ -225,7 +225,6 @@ definePageMeta({
 const { loading } = useLoader();
 const { cartItems, fetchCartItems, clearCart } = useCart();
 const { showOrderModal } = useOrderModal();
-const user = useSupabaseUser();
 
 const router = useRouter();
 
@@ -317,10 +316,7 @@ const makePayment = async () => {
           logo: "https://res.cloudinary.com/dtomoi7fb/image/upload/v1706475334/favicon_hbppix.ico",
           title: "Audiophile - Your Premier Audio Equipment Destination",
         },
-        meta: {
-          user_id: user.value?.id || "",
-          token: "",
-        },
+        meta: {},
         onclose(): void {},
         payment_options: "banktransfer",
         public_key: publicKey,
