@@ -224,6 +224,9 @@ definePageMeta({
   layout: "products",
   middleware: ["auth"],
 });
+useHead({
+  script:[{src: "https://checkout.flutterwave.com/v3.js"},],
+});
 const router = useRouter();
 // At the top of your <script> or within the setup function
 declare let FlutterwaveCheckout: any;
@@ -295,7 +298,7 @@ const grandTotal = computed(() => {
 const makePayment = async () => {
   const isFormCorrect = await $v.value.$validate();
   if (isFormCorrect) {
-    if (form.value.paymentOption === 1) {
+    if (form.value.paymentOption === 1 && process.client) {
       const config = useRuntimeConfig();
       const publicKey = config.public.flutterwave_public_key;
       FlutterwaveCheckout({
@@ -305,7 +308,6 @@ const makePayment = async () => {
         currency: "NGN",
         payment_optiona: "banktransfer",
         redirect_url: null,
-        followRedirects: false,
         customer: {
           email: form.value.email,
           phonenumber: form.value.phone,
