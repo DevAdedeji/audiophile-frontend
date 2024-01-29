@@ -305,7 +305,6 @@ const makePayment = async () => {
         currency: "NGN",
         payment_optiona: "banktransfer",
         redirect_url: null,
-        followRedirects: false,
         customer: {
           email: form.value.email,
           phonenumber: form.value.phone,
