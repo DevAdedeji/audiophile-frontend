@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="bg-white">
     <div class="bg-black w-full py-15 lg:py-30">
       <h1
         class="text-white uppercase text-7 lg:text-10 text-center tracking-wider"
