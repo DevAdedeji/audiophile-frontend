@@ -7,7 +7,6 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: "en",
       },
-      script: [{ src: "https://checkout.flutterwave.com/v3.js" }],
       meta: [
         { charset: "utf-8" },
         {
@@ -44,7 +43,10 @@ export default defineNuxtConfig({
   },
   css: ["/assets/css/main.css"],
   modules: ["@unocss/nuxt", "@nuxtjs/supabase"],
-  plugins: [{ mode: "client", src: "~/plugins/toast" }],
+  plugins: [
+    { mode: "client", src: "~/plugins/toast" },
+    { mode: "client", src: "~/plugins/flutterwave" },
+  ],
   runtimeConfig: {
     public: {
       frontendBaseUrl:

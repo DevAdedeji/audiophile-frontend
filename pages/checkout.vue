@@ -214,22 +214,20 @@
 </template>
 
 <script setup lang="ts">
+import { useFlutterwave } from "flutterwave-vue3";
 import { useVuelidate } from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
 import { type PaymentOptions } from "~/composables/products/types";
-const { loading } = useLoader();
-const { cartItems, fetchCartItems, clearCart } = useCart();
-const { showOrderModal } = useOrderModal();
 definePageMeta({
   layout: "products",
   middleware: ["auth"],
 });
-useHead({
-  script:[{src: "https://checkout.flutterwave.com/v3.js"},],
-});
+const { loading } = useLoader();
+const { cartItems, fetchCartItems, clearCart } = useCart();
+const { showOrderModal } = useOrderModal();
+const user = useSupabaseUser();
+
 const router = useRouter();
-// At the top of your <script> or within the setup function
-declare let FlutterwaveCheckout: any;
 
 const form = ref({
   name: "",
@@ -301,27 +299,33 @@ const makePayment = async () => {
     if (form.value.paymentOption === 1 && process.client) {
       const config = useRuntimeConfig();
       const publicKey = config.public.flutterwave_public_key;
-      FlutterwaveCheckout({
-        public_key: publicKey,
-        tx_ref: "ay_" + Math.floor(Math.random() * 1000000000 + 1),
+      useFlutterwave({
         amount: grandTotal.value,
-        currency: "NGN",
-        payment_optiona: "banktransfer",
-        redirect_url: null,
-        customer: {
-          email: form.value.email,
-          phonenumber: form.value.phone,
-          name: form.value.name,
-        },
-        callback: async function () {
+        async callback(): Promise<void> {
           showOrderModal.value = true;
           await clearCart();
         },
+        country: "NG",
+        currency: "NGN",
+        customer: {
+          email: form.value.email,
+          phone_number: form.value.phone,
+          name: form.value.name,
+        },
         customizations: {
-          title: "Audiophile - Your Premier Audio Equipment Destination",
           description: "Audiophile payment integration",
           logo: "https://res.cloudinary.com/dtomoi7fb/image/upload/v1706475334/favicon_hbppix.ico",
+          title: "Audiophile - Your Premier Audio Equipment Destination",
         },
+        meta: {
+          user_id: user.value?.id || "",
+          token: "",
+        },
+        onclose(): void {},
+        payment_options: "banktransfer",
+        public_key: publicKey,
+        redirect_url: "",
+        tx_ref: "ay_" + Math.floor(Math.random() * 1000000000 + 1),
       });
     } else {
       showOrderModal.value = true;
