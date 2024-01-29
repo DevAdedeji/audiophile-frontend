@@ -29,7 +29,7 @@
         </div>
       </div>
     </header>
-    <QuickLinks />
+    <QuickLinks class="mt-10" />
     <section class="pb-30 w-90% mx-auto max-wid">
       <div
         class="p bg-orange rounded-md h-600px sm:h-720px xl:h-560px flex flex-col xl:flex-row items-center gap-18 xl:justify-between overflow-y-hidden"
@@ -72,7 +72,7 @@
           <CustomButton2
             label="See product"
             :to="`/product/6`"
-            class="!bg-black !text-white mt-6 xl:mt-0 hover:!opacity-90"
+            class="mt-6 xl:mt-0"
           />
         </div>
       </div>
@@ -97,7 +97,7 @@
           <CustomButton2
             label="See product"
             :to="`/product/4`"
-            class="!bg-black !text-white mt-6 xl:mt-0 hover:!opacity-90"
+            class="mt-6 xl:mt-0"
           />
         </div>
       </div>
