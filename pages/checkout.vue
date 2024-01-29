@@ -224,6 +224,9 @@ definePageMeta({
   layout: "products",
   middleware: ["auth"],
 });
+useHead({
+  script:[{src: "https://checkout.flutterwave.com/v3.js"},],
+});
 const router = useRouter();
 // At the top of your <script> or within the setup function
 declare let FlutterwaveCheckout: any;
