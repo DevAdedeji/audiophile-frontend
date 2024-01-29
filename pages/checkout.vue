@@ -296,7 +296,7 @@ const grandTotal = computed(() => {
 const makePayment = async () => {
   const isFormCorrect = await $v.value.$validate();
   if (isFormCorrect) {
-    if (form.value.paymentOption === 1 && process.client) {
+    if (form.value.paymentOption === 1) {
       const config = useRuntimeConfig();
       const publicKey = config.public.flutterwave_public_key;
       useFlutterwave({
