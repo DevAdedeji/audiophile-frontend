@@ -326,7 +326,6 @@ const makePayment = async () => {
     } else {
       showOrderModal.value = true;
       await clearCart();
-      router.push("/");
     }
   }
 };
